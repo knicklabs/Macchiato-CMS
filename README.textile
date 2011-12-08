@@ -1,10 +1,12 @@
 h1. Macchiato
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Macchiato is a new breed of CMS built on modern web-based technologies. Your content is stored in a document-based, MongoDB database. Your content is managed in a JavaScript web application that interacts with the database through a RESTful API built on Ruby on Rails. 
+
+Because Macchiato uses a schema-less database, it is easy to use the CMS as a starting point for a custom application. Simply add in your models and controls with no need to mess around with database schemas.
 
 h2. More Information
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Visit the official website at http://macchiatocms.herokuapp.com for more information.
 
 h2. Required Gems
 
@@ -16,28 +18,24 @@ h2. Dependencies
 
 To use this application, you will need:
 
-* The Ruby language (version 1.8.7 or 1.9.2)
-* Rails (version 3.0.4 or newer)
+* The Ruby language (version 1.9.2)
+* Rails (version 3.1.3 or newer)
 
-h2. Installing the Application
+h2. Installing the Application on Heroku
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Coming soon.
 
 h2. Getting Started
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Coming soon.
 
 h2. Documentation and Support
 
-This is the only documentation.
+This is the only documentation. There is no support.
 
 h4. Issues
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-h2. Similar Projects
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+This project is in early stage development. It should not be considered functional. Use at your own risk.
 
 h2. Contributing
 
@@ -48,7 +46,8 @@ If you make improvements to this application, please share with others.
 * Commit with Git.
 * Send the author a pull request.
 
-If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+If you add functionality to this application, create an alternative implementation, or build an application that is similar, 
+please contact me and I'll add a note to the README so that others can find your work.
 
 h2. Credits
 
@@ -56,4 +55,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 h2. License
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Copyright (c) 2011 Nickolas Kenyeres.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
