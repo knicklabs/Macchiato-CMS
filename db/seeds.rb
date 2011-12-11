@@ -49,7 +49,7 @@ post = Post.create!(
   published: false
 )
 puts 'New post created and unpublished: ' << post.title
-post.delete!
+post.delete
 puts 'Post deleted: ' << post.title
 
 post = Post.create!(
@@ -60,5 +60,5 @@ post = Post.create!(
   published: true
 )
 puts 'New post created: ' << post.title
-post.delete!
+post.delete
 puts 'Post deleted: ' << post.title

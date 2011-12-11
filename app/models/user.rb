@@ -13,7 +13,7 @@ class User
   validates :last_name, presence: true, length: { maximum: 32 }
   validates :username, presence: true, length: { minimum: 5, maximum: 16 }
   
-  validates_uniqueness_of :user_name, :email, case_sensitive: false
+  validates_uniqueness_of :username, :email, case_sensitive: false
   
   attr_accessible :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me
 end

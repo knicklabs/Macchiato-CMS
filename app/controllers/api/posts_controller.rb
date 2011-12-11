@@ -1,10 +1,10 @@
-class Admin::PostsController < ApplicationController
+class Api::PostsController < ApplicationController
   # Only authorized users may access this resource.
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   
   # GET /posts.json
   def index
-    @posts = Post.all.where({ user_id: current_user.id })
+    @posts = Post.all
     
     respond_to do |format|
       format.json { render json: @posts }
@@ -13,7 +13,7 @@ class Admin::PostsController < ApplicationController
   
   # GET /posts/deleted.json
   def deleted
-    @posts = Post.where({ user_id: current_user.id, deleted_at: { "$exists" => true } })
+    @posts = Post.where({ deleted_at: { "$exists" => true } })
     
     respond_to do |format|
       format.json { render json: @posts }
@@ -22,7 +22,7 @@ class Admin::PostsController < ApplicationController
   
   # GET /posts/published.json
   def published
-    @posts = Post.where({ user_id: current_user.id, published: true })
+    @posts = Post.where({ published: true })
     
     respond_to do |format|
       format.json { render json: @posts }
@@ -31,7 +31,7 @@ class Admin::PostsController < ApplicationController
   
   # GET /posts/unpublished.json
   def unpublished
-    @posts = Post.where({ user_id: current_user.id, published: false })
+    @posts = Post.where({ published: false })
     
     respond_to do |format|
       format.json { render json: @posts }
@@ -60,16 +60,16 @@ class Admin::PostsController < ApplicationController
     if type.downcase == "published"
       @count = Post.count(conditions: { published: true }) 
     elsif type.downcase == "unpublished"
-      @count = Post.count(conditions: { user_id: current_user.id, published: false })
+      @count = Post.count(conditions: { published: false })
     elsif type.downcase == "deleted"
-      @count = Post.count(conditions: { user_id: current_user.id, deleted_at: { "$exists" => true } })  
+      @count = Post.count(conditions: { deleted_at: { "$exists" => true } })  
     elsif type.downcase == "search"
       query = ""
       query = params[:q] unless params[:q].blank?
       
-      @count = Post.count(conditions: { user_id: current_user.id, title: /#{query}/i })
+      @count = Post.count(conditions: { title: /#{query}/i })
     else
-      @count = Post.count(conditions: { user_id: current_user.id })
+      @count = Post.count
     end  
     
     respond_to do |format|
@@ -79,7 +79,7 @@ class Admin::PostsController < ApplicationController
   
   # GET /posts/1.json
   def show
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     
     respond_to do |format|
       format.json { render json: @post }
@@ -102,7 +102,7 @@ class Admin::PostsController < ApplicationController
 
   # PUT /posts/1.json
   def update
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -115,7 +115,7 @@ class Admin::PostsController < ApplicationController
   
   # DELETE /posts/1.json
   def destroy
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     @post.destroy
     
     respond_to do |format|
@@ -125,7 +125,7 @@ class Admin::PostsController < ApplicationController
   
   # PUT /admin/posts/1/restore.json
   def restore
-    @post = current_user.posts.find(params[:id])
+    @post = Posts.find(params[:id])
     @post.restore
     
     respond_to do |format|

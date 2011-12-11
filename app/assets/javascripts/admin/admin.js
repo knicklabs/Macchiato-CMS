@@ -10,5 +10,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
-//= require backbone/macchiato
+//= require ../app/factory
+//= require ../backbone/macchiato
 //= require_tree .

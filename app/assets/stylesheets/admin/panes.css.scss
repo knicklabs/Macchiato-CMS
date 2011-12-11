@@ -1,0 +1,51 @@
+@import "bootstrap/mixins";
+
+#header {
+  .pane {
+    @include vertical-gradient(lighten(#384E76, 15%), #384E76);
+    border-right: 1px solid lighten(#384E76, 15%);
+    border-left: 1px solid darken(#384E76, 2%);
+    border-bottom: 1px solid darken(#384E76, 10%);
+    
+    &:first-child {
+      border-left: 1px solid transparent;
+    }
+    
+    &:last-child {
+      border-right: 1px solid transparent;
+    }
+  }
+}
+
+#body {
+  .pane {
+    border-left: 1px solid darken(#E8EBF2, 10%);
+  
+    &:first-child {
+      background-color: #E8EBF2;
+      border-left: 1px solid transparent;
+      border-right: 1px solid lighten(#E8EBF2, 10%);
+    }
+    
+    &:last-child {
+      border-right: 1px solid transparent;
+    }
+  }
+}
+
+#footer {
+  .pane {
+    @include vertical-gradient(lighten(#C9CFDE, 5%), #C9CFDE);
+    border-right: 1px solid lighten(#C9CFDE, 10%);
+    border-left: 1px solid #C9CFDE;
+    border-top: 1px solid #C9CFDE;
+    
+    &:first-child {
+      border-left-color: transparent;
+    }
+    
+    &:last-child {
+      border-right-color: transparent;
+    }
+  }  
+}
