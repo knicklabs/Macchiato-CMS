@@ -2,10 +2,10 @@
 
 #header {
   .pane {
-    @include vertical-gradient(lighten(#384E76, 15%), #384E76);
-    border-right: 1px solid lighten(#384E76, 15%);
-    border-left: 1px solid darken(#384E76, 2%);
-    border-bottom: 1px solid darken(#384E76, 10%);
+    @include vertical-gradient(lighten(#3C4558, 15%), #3C4558);
+    border-right: 1px solid lighten(#3C4558, 15%);
+    border-left: 1px solid darken(#3C4558, 2%);
+    border-bottom: 1px solid darken(#3C4558, 10%);
     
     &:first-child {
       border-left: 1px solid transparent;
@@ -19,15 +19,16 @@
 
 #body {
   .pane {
-    border-left: 1px solid darken(#E8EBF2, 10%);
+    border-left: 1px solid darken(#D5DEE7, 10%);
   
     &:first-child {
-      background-color: #E8EBF2;
+      background-color: #D5DEE7;
       border-left: 1px solid transparent;
-      border-right: 1px solid lighten(#E8EBF2, 10%);
+      border-right: none;
     }
     
     &:last-child {
+      border-left: 1px solid #cecece;
       border-right: 1px solid transparent;
     }
   }
@@ -35,16 +36,17 @@
 
 #footer {
   .pane {
-    @include vertical-gradient(lighten(#C9CFDE, 5%), #C9CFDE);
-    border-right: 1px solid lighten(#C9CFDE, 10%);
-    border-left: 1px solid #C9CFDE;
-    border-top: 1px solid #C9CFDE;
+    @include vertical-gradient(#EFEFEF, #DFDFDF);
+    border-right: 1px solid lighten(#F0ECE3, 10%);
+    border-left: 1px solid darken(#EDEDED, 10%);
+    border-top: 1px solid #cecece;
     
     &:first-child {
-      background-color: #E8EBF2;
+      background-color: #D5DEE7;
       background-image: none;
       border-top-color: transparent;
       border-left-color: transparent;
+      border-right: 1px solid transparent;
     }
     
     &:last-child {

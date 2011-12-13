@@ -13,6 +13,18 @@ user = User.create!(
 puts 'New user created: ' << user.username
 puts "Login with #{user.email} and #{user.password}"
 
+puts 'SETTING UP ANOTHER USER LOGIN'
+user2 = User.create!(
+  first_name: "Nikki",
+  last_name: "Sticks",
+  username: "nikki",
+  email: "nikki@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+puts 'New user created: ' << user.username
+puts "Login with #{user.email} and #{user.password}"
+
 puts 'SETTING UP SAMPLE POSTS'
 post = Post.create!(
   user: user,
@@ -62,3 +74,29 @@ post = Post.create!(
 puts 'New post created: ' << post.title
 post.delete
 puts 'Post deleted: ' << post.title
+
+puts 'SETTING UP SAMPLE PAGES'
+
+page = Page.create!(
+  user: user,
+  title: "About Us",
+  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  published: true
+)
+puts 'New page created and published: ' << page.title
+
+page = Page.create!(
+  user: user,
+  title: "Contact Us",
+  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  published: true
+)
+puts 'New page created and published: ' << page.title
+
+page = Page.create!(
+  user: user,
+  title: "Home",
+  text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  published: true
+)
+puts 'New page created and published: ' << page.title

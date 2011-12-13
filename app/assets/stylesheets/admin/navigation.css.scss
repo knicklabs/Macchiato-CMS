@@ -2,6 +2,7 @@
 
 #main-navigation, #secondary-navigation {
   ul {
+    @include box-shadow(0px 1px 1px rgba(0, 0, 0, 0.1));
     list-style: none;
     margin: 0;
     padding: 0;
@@ -20,14 +21,20 @@
         text-decoration: none;
         color: #444;
         padding: 20px 10px;
-        @include vertical-gradient(#E8EBF2, darken(#E8EBF2, 2%));
-        border-top: 1px solid lighten(#E8EBF2, 20%);
-        border-bottom: 1px solid darken(#E8EBF2, 10%);
+        @include vertical-gradient(#D5DEE7, darken(#D5DEE7, 2%));
+        border-top: 1px solid lighten(#D5DEE7, 10%);
+        border-bottom: 1px solid darken(#D5DEE7, 10%);
+
+        &:hover {
+          @include vertical-gradient(lighten(#D5DEE7, 5%), #D5DEE7);
+        }
 
         &.active {
-          @include vertical-gradient(darken(#E8EBF2, 5%), darken(#E8EBF2, 10%));
-          border-top: 1px solid #E8EBF2;
-          border-bottom: 1px solid darken(#E8EBF2, 15%);
+          @include vertical-gradient(lighten(#62B96C, 5%), darken(#62B96C, 5%));
+          border-top: 1px solid #62B96C;
+          border-bottom: 1px solid darken(#62B96C, 15%);
+          color: white;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
         }
       }
     }
@@ -36,6 +43,7 @@
 
 #secondary-navigation {
   ul {
+    @include box-shadow(0px 1px 1px rgba(0, 0, 0, 0.2));
     li {
       display: block;
       font: {
@@ -46,6 +54,12 @@
       @include vertical-gradient(#FEFEFE, #EFEFEF);
       border-top: 1px solid #FFFFFF;
       border-bottom: 1px solid #DEDEDE;
+
+      &.active {
+        @include vertical-gradient(#E3F5CE, darken(#E3F5CE, 5%));
+        border-top: 1px solid lighten(#E3F5CE, 5%);
+        border-bottom: 1px solid darken(#E3F5CE, 10%);
+      }
     }
   }
 }

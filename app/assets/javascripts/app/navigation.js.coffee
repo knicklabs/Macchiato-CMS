@@ -22,3 +22,11 @@ class window.AppFactory.Navigation
       $(this).addClass('active')
     )
 
+  activate: ($el)->
+    $el.live('click', ->
+      $(this).parent().find('li').each(->
+        $(this).removeClass('active')
+      )
+      $(this).addClass('active')
+    )
+

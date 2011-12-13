@@ -18,5 +18,17 @@ class Api::UsersController < ApplicationController
     respond_to do |format|
       format.json { render json: @users }
     end
-  end  
+  end
+
+  # GET /users/search.json
+  def search
+    query = ""
+    query = params[:q] unless params[:q].blank?
+
+    @users = User.any_of({ first_name: /#{query}/i }, { last_name: /#{query}/i})
+
+    respond_to do |format|
+      format.json { render json: @users }
+    end
+  end
 end

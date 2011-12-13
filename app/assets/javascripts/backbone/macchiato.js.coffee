@@ -63,6 +63,9 @@ window.Macchiato =
       ]
     })
 
+    # Activate the secondary navigation.
+    @appNavigation.activate($('#secondary-navigation ul li'))
+
     # Create the search form.
     @appSearch = new AppFactory.Search(@appHeader.panes[1])
     @appSearch.make({})

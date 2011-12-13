@@ -1,0 +1,23 @@
+@import "bootstrap/mixins";
+
+form#search {
+  margin: 0;
+  padding: 0 10px;
+  padding-top: 8px;
+
+  input {
+    @include box-shadow(inset 0px 1px 6px #3C4558);
+    @include border-radius(30px);
+    border: 1px solid darken(#3C4558, 2%);
+    width: 100%;
+    font: {
+      size: 13px;
+      weight: bold;
+    }
+    padding: 5px 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
