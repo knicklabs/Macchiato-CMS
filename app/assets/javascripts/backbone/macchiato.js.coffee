@@ -19,7 +19,7 @@ window.Macchiato =
       height: 50,
       topOffset: 0,
       panes: [
-        { id: "main-header", width: 300, group: "main" },
+        { id: "main-header", width: 200, group: "main" },
         { id: "secondary-header", width: 300, group: "secondary" },
         { id: "content-header", group: "content" }
       ]
@@ -32,7 +32,7 @@ window.Macchiato =
       topOffset: 50,
       bottomOffset: 40,
       panes: [
-        { id: "main-navigation", width: 300, verticalScroll: true, horizontalScroll: true, group: "main" },
+        { id: "main-navigation", width: 200, verticalScroll: true, horizontalScroll: true, group: "main" },
         { id: "secondary-navigation", width: 300, verticalScroll: true, horizontalScroll: true, group: "secondary" },
         { id: "content", verticalScroll: true, horizontalScroll: true, group: "content" }
       ]
@@ -45,7 +45,7 @@ window.Macchiato =
       height: 40,
       bottomOffset: 0
       panes: [
-        { id: "main-footer", width: 300, group: "main" },
+        { id: "main-footer", width: 200, group: "main" },
         { id: "secondary-footer", width: 300, group: "secondary" },
         { id: "content-footer", group: "content" }
       ]
@@ -63,7 +63,13 @@ window.Macchiato =
       ]
     })
 
+    # Create the search form.
+    @appSearch = new AppFactory.Search(@appHeader.panes[1])
+    @appSearch.make({})
+
     new Macchiato.Routers.Posts
+    new Macchiato.Routers.Pages
+    new Macchiato.Routers.Users
     try
       Backbone.history.start()
     catch error

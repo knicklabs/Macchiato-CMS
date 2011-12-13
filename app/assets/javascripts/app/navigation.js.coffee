@@ -15,3 +15,10 @@ class window.AppFactory.Navigation
       self.navigationList.append('<li><a href="'+l.href+'" title="'+l.title+'">'+l.name+'</a></li>')
     )
 
+    self.navigationList.find('a').live('click', ->
+      self.navigationList.find('a').each(->
+        $(this).removeClass('active')
+      )
+      $(this).addClass('active')
+    )
+

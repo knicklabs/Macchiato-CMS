@@ -1,10 +1,10 @@
 class Api::PagesController < ApplicationController
   # Only authorized users may access this resource.
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   
   # GET /Pages.json
   def index
-    @pages = Page.all.where({ user_id: current_user.id })
+    @pages = Page.all
     
     respond_to do |format|
       format.json { render json: @pages }
@@ -13,7 +13,7 @@ class Api::PagesController < ApplicationController
   
   # GET /Pages/deleted.json
   def deleted
-    @pages = Page.where({ user_id: current_user.id, deleted_at: { "$exists" => true } })
+    @pages = Page.where({ deleted_at: { "$exists" => true } })
     
     respond_to do |format|
       format.json { render json: @pages }
@@ -22,7 +22,7 @@ class Api::PagesController < ApplicationController
   
   # GET /Pages/published.json
   def published
-    @pages = Page.where({ user_id: current_user.id, published: true })
+    @pages = Page.where({ published: true })
     
     respond_to do |format|
       format.json { render json: @pages }
@@ -31,7 +31,7 @@ class Api::PagesController < ApplicationController
   
   # GET /Pages/unpublished.json
   def unpublished
-    @pages = Page.where({ user_id: current_user.id, published: false })
+    @pages = Page.where({ published: false })
     
     respond_to do |format|
       format.json { render json: @pages }
@@ -60,16 +60,16 @@ class Api::PagesController < ApplicationController
     if type.downcase == "published"
       @count = Page.count(conditions: { published: true }) 
     elsif type.downcase == "unpublished"
-      @count = Page.count(conditions: { user_id: current_user.id, published: false })
+      @count = Page.count(conditions: { published: false })
     elsif type.downcase == "deleted"
-      @count = Page.count(conditions: { user_id: current_user.id, deleted_at: { "$exists" => true } })  
+      @count = Page.count(conditions: { deleted_at: { "$exists" => true } })
     elsif type.downcase == "search"
       query = ""
       query = params[:q] unless params[:q].blank?
       
-      @count = Page.count(conditions: { user_id: current_user.id, title: /#{query}/i })
+      @count = Page.count(conditions: { title: /#{query}/i })
     else
-      @count = Page.count(conditions: { user_id: current_user.id })
+      @count = Page.count
     end  
     
     respond_to do |format|
@@ -79,7 +79,7 @@ class Api::PagesController < ApplicationController
   
   # GET /Pages/1.json
   def show
-    @page = current_user.Pages.find(params[:id])
+    @page = Page.find(params[:id])
     
     respond_to do |format|
       format.json { render json: @page }
@@ -102,7 +102,7 @@ class Api::PagesController < ApplicationController
 
   # PUT /Pages/1.json
   def update
-    @page = current_user.Pages.find(params[:id])
+    @page = Pages.find(params[:id])
   
     respond_to do |format|
       if @page.update_attributes(params[:Page])
@@ -115,7 +115,7 @@ class Api::PagesController < ApplicationController
   
   # DELETE /Pages/1.json
   def destroy
-    @page = current_user.Pages.find(params[:id])
+    @page = Page.find(params[:id])
     @page.destroy
     
     respond_to do |format|
@@ -125,7 +125,7 @@ class Api::PagesController < ApplicationController
   
   # PUT /admin/Pages/1/restore.json
   def restore
-    @page = current_user.Pages.find(params[:id])
+    @page = Page.find(params[:id])
     @page.restore
     
     respond_to do |format|

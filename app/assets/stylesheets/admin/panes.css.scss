@@ -41,6 +41,9 @@
     border-top: 1px solid #C9CFDE;
     
     &:first-child {
+      background-color: #E8EBF2;
+      background-image: none;
+      border-top-color: transparent;
       border-left-color: transparent;
     }
     
