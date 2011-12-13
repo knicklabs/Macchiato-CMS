@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
     @users = User.all
     
     respond_to do |format|
-      format.json { render json: @pages }
+      format.json { render json: @users }
     end
   end
   
