@@ -70,6 +70,10 @@ window.Macchiato =
     @appSearch = new AppFactory.Search(@appHeader.panes[1])
     @appSearch.make({})
 
+    # Create the application logo.
+    @appLogo = new AppFactory.Logo(@appHeader.panes[0])
+    @appLogo.make({ title: "Macchiato" })
+
     new Macchiato.Routers.Posts
     new Macchiato.Routers.Pages
     new Macchiato.Routers.Users
