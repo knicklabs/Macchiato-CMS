@@ -21,4 +21,13 @@ class Macchiato.Routers.Posts extends Backbone.Router
       error: (model, response) ->
     })
     
+  edit: (id)->
+    post = new Macchiato.Models.Post({ id: id })
+    post.fetch({
+      success: (model, response)->
+        @view = new Macchiato.Views.PostsForm({ post: post })
+        Macchiato.appBody.panes[2].html(@view.render().el)
+      error: (model, response)->
+    })
+    
   

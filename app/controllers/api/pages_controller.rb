@@ -1,6 +1,6 @@
 class Api::PagesController < ApplicationController
   # Only authorized users may access this resource.
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   
   # GET /Pages.json
   def index

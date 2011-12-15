@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   # Only authorized users may access this resource.
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   
   # GET /users.json
   def index

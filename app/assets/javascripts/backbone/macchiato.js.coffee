@@ -73,6 +73,10 @@ window.Macchiato =
     # Create the application logo.
     @appLogo = new AppFactory.Logo(@appHeader.panes[0])
     @appLogo.make({ title: "Macchiato" })
+    
+    # Make fieldset content expandable/collapsible
+    @fieldsetExpander = new AppFactory.FieldsetExpander()
+    @fieldsetExpander.make({})
 
     new Macchiato.Routers.Posts
     new Macchiato.Routers.Pages

@@ -15,7 +15,9 @@ class Post
   
   accepts_nested_attributes_for :meta_names, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :custom_fields, allow_destroy: true, reject_if: :all_blank
-  
+ 
+  attr_accessible :title, :text, :tags, :published, :meta_names, :meta_names_attributes, :custom_fields, :custom_fields_attributes
+
   def as_json(options = {})
     attrs = super(options)
     attrs["id"] = attrs["_id"]

@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   # Only authorized users may access this resource.
-  # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   
   # GET /posts.json
   def index
@@ -104,9 +104,35 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
   
+    unless params[:meta_names].blank?
+      params[:meta_names].each_with_index do |meta_name, index|
+        if meta_name[:id] and meta_name[:_delete] == true
+          meta = @post.meta_names.find(meta_name[:id])
+          meta.delete
+          params[:meta_names][index] = nil
+        end
+        if meta_name[:key].blank? and meta_name[:value].blank?
+          params[:meta_names][index] = nil
+        end
+      end
+    end
+    
+    unless params[:custom_fields].blank?
+      params[:custom_fields].each_with_index do |custom_field, index|
+        if custom_field[:id] and custom_field[:_delete] == true
+          field = @post.custom_fields.find(custom_field[:id])
+          field.delete
+          params[:custom_fields][index] = nil
+        end
+        if custom_field[:key].blank? and custom_field[:value].blank?
+          params[:custom_fields][index] = nil
+        end
+      end
+    end
+  
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.json { head :ok }
+        format.json { render json: @post, status: :ok }
       else
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

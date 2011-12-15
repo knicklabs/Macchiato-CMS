@@ -28,8 +28,15 @@
     }
     
     &:last-child {
+      background: transparent url('/backgrounds/fancy_deboss.png') top left repeat;
       border-left: 1px solid #cecece;
       border-right: 1px solid transparent;
+      padding: 10px;
+      
+      > div {
+        width: 100%;
+        max-width: 800px;
+      }
     }
   }
 }
@@ -38,7 +45,7 @@
   .pane {
     @include vertical-gradient(#EFEFEF, #DFDFDF);
     border-right: 1px solid lighten(#F0ECE3, 10%);
-    border-left: 1px solid darken(#EDEDED, 10%);
+    border-left: 1px solid darken(#D5DEE7, 10%);
     border-top: 1px solid #cecece;
     
     &:first-child {
@@ -46,11 +53,12 @@
       background-image: none;
       border-top-color: transparent;
       border-left-color: transparent;
-      border-right: 1px solid transparent;
+      border-right-color: transparent;
     }
     
     &:last-child {
       border-right-color: transparent;
+      border-left-color: #CDCDCD;
     }
   }  
 }

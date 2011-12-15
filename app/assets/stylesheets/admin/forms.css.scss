@@ -1,0 +1,100 @@
+@import 'bootstrap/mixins';
+
+@mixin box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+}
+
+@mixin box-orient-horizontal {
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+@mixin box-orient-vertical {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+}
+
+@mixin box-flex($size) {
+  -webkit-box-flex: $size;
+  -moz-box-flex: $size;
+  box-flex: $size;
+}
+
+#body {
+  form {
+    h5 {
+      padding-left: 32px;
+      margin-bottom: 5px;
+      line-height: 24px;
+      width: 100%;
+    }
+    .input-text {
+      @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.25));
+      background-image: none;
+      border-color: #D0D0D0;
+      width: 100%;
+    }
+    textarea.input-text {
+      height: 300px;
+      resize: vertical;  
+    }
+    .group {
+      width: 100%;
+      @include box;
+      @include box-orient-horizontal;
+      margin-bottom: 10px;
+      .key {
+        @include box-flex(4);
+        padding-right: 10px;
+      }
+      .value {
+        @include box-flex(4);
+        padding-right: 10px;
+      }
+      .delete {
+        width: 100px;
+        
+        .remove {
+          display: block;
+          width: 16px;
+          height: 30px;
+          text-indent: -9999px;
+          overflow: hidden;
+          background: transparent url('/icons/magenta/x_alt_16x16.png') center center no-repeat;
+          opacity: 0.7;
+          
+          &:hover {
+            opacity: 1.0;
+          }
+        }
+      }
+    }
+    
+    fieldset {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    fieldset.collapsed {
+      > div {
+        display: none;
+      }
+      h5 {
+        background: transparent url('/icons/green/arrow_down_alt1_24x24.png') center left no-repeat;
+      }
+    }
+    
+    fieldset.expanded {
+      > div {
+        display: block;
+      }
+      h5 {
+        background: transparent url('/icons/green/arrow_up_alt1_24x24.png') center left no-repeat;
+      }
+    }
+  }
+}
+

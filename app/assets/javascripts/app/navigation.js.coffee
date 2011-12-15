@@ -2,6 +2,7 @@
 class window.AppFactory.Navigation
   constructor: (@navigationPane)->
     @navigationList = ""
+    @secondaryNavigationList = ""
     
   make: (options)->
     self = @
@@ -23,6 +24,7 @@ class window.AppFactory.Navigation
     )
 
   activate: ($el)->
+    @secondaryNavigationList = $el.parent()
     $el.live('click', ->
       $(this).parent().find('li').each(->
         $(this).removeClass('active')

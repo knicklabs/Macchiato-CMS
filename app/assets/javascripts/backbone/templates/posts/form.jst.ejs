@@ -1,0 +1,81 @@
+<form id="edit-post" name="post" class="nice">
+  <fieldset id="edit-post-content" class="expanded">
+    <h5>Content</h5>
+    <div>
+      <label for="post_title">Title</label>
+      <input type="text" name="title" id="post_title" value="<%= title %>" class="input-text">
+    
+      <label for="post_text">Content</label>
+      <textarea name="text" id="post_text" class="input-text"><%= text %></textarea>
+    </div>
+  </fieldset>
+  
+  <fieldset id="edit-post-meta-names" class="collapsed">
+    <h5>Meta Data</h5>
+    <div>
+      <div class="group-container">
+      <% _.each(meta_names, function(meta_name) { %>
+        <div class="group">
+          <% if (meta_name.id) { %>
+            <input type="hidden" name="meta_names[][id]" value="<%= meta_name.id %>">
+          <% } %>
+          <div class="key">
+            <input type="text" name="meta_names[][key]" value="<%= meta_name.key %>" placeholder="Key" class="input-text">
+          </div>
+          <div class="value">
+            <input type="text" name="meta_names[][value]" value="<%= meta_name.value %>" placeholder="Value" class="input-text">
+          </div>
+          <div class="delete">
+            <% if (meta_name.id) { %>
+              <label>
+                <input type="checkbox" name="meta_names[][_delete]">Delete?
+              </label>
+            <% } else { %>
+              <a href="#" class="remove remove-meta-name">Remove</a>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+      </div>
+      <p class="add-another">
+        <a href="#" class="add-meta-name">Add additional meta data</a>
+      </p>
+    </div>
+  </fieldset>
+  
+  <fieldset id="edit-post-custom-fields" class="collapsed">
+    <h5>Custom Fields</h5>
+    <div>
+      <div class="group-container">
+      <% _.each(custom_fields, function(custom_field) { %>
+        <div class="group">
+          <% if (custom_field.id) { %>
+            <input type="hidden" name="custom_fields[][id]" value="<%= custom_field.id %>">
+          <% } %>
+          <div class="key">
+            <input type="text" name="custom_fields[][key]" value="<%= custom_field.key %>" placeholder="Key" class="input-text">
+          </div>
+          <div class="value">
+            <input type="text" name="custom_fields[][value]" value="<%= custom_field.value %>" placeholder="Value" class="input-text">
+          </div>
+          <div class="delete">
+            <% if (custom_field.id) { %>
+              <label>
+                <input type="checkbox" name="custom_fields[][_delete]">Delete?
+              </label>
+            <% } else { %>
+              <a href="#" class="remove remove-custom-field">Remove</a>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+      </div>
+      <p class="add-another">
+        <a href="#" class="add-custom-field">Add another custom field</a>
+      </p>
+    </div>
+  </fieldset>
+  <div class="actions">
+    <button class="button round save">Save</button>
+  </div>
+</form>

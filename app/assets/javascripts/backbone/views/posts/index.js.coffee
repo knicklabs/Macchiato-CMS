@@ -5,6 +5,9 @@ class Macchiato.Views.PostsIndex extends Backbone.View
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll', 'render')
     @options.posts.bind('reset', @addAll)
+    @options.posts.bind('change', @render, this)
+    @options.posts.bind('add', @render)
+    @options.posts.bind('remove', @render)
     
   addAll: ->
     @options.posts.each(@addOne)
@@ -13,13 +16,24 @@ class Macchiato.Views.PostsIndex extends Backbone.View
     view = new Macchiato.Views.PostsItem({ model: post })
     @$("ul").append(view.render().el)
     
-  render: ->
+  render: (item)->
     $(@el).html(JST["backbone/templates/posts/index"](posts: @options.posts.toJSON()))
     @addAll()
+    
+    if item 
+      Macchiato.appNavigation.secondaryNavigationList.find('li').each(->
+        $(this).removeClass("active")
+        article = $(this).find('.resource')
+        if $(article).attr('data-id') == item.get('id')
+          $(this).addClass('active')
+      )
     return this
+    
+    
+    @navigationList = @navigationPane.find("ul")
     
   edit: (e) ->
     target = $(e.currentTarget)
     id = target.attr('data-id')
-    Backbone.history.loadUrl('posts/'+id+'/edit')
-    return false
+    view = new Macchiato.Views.PostsForm({ post: @options.posts.get(id) })
+    Macchiato.appBody.panes[2].html(view.render().el)
