@@ -93,7 +93,7 @@ class Api::PostsController < ApplicationController
     
     respond_to do |format|
       if @post.save
-        format.json { render json: @post, status: :created, location: [:admin, @post] }
+        format.json { render json: @post, status: :ok }
       else
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

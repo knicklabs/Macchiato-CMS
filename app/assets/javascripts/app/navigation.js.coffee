@@ -23,6 +23,13 @@ class window.AppFactory.Navigation
       $(this).addClass('active')
     )
 
+  activateSection: (options)->
+    $('#main-navigation ul li a').each(->
+      $(this).removeClass('active')
+      if $(this).attr('title') == options.title
+        $(this).addClass('active')  
+    )
+
   activate: ($el)->
     @secondaryNavigationList = $el.parent()
     $el.live('click', ->
@@ -31,4 +38,15 @@ class window.AppFactory.Navigation
       )
       $(this).addClass('active')
     )
-
+    
+  deactivate: (options)->
+    $('#secondary-navigation ul li').each(->
+      $(this).removeClass('active')
+    )
+    
+  activateThis: (options)->
+    @deactivate
+    $('#secondary-navigation ul li').each(->
+      if $(this).find('article').attr('data-id') == options.id
+        $(this).addClass('active')
+    )

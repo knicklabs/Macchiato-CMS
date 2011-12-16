@@ -5,6 +5,7 @@ class Macchiato.Views.PostsForm extends Backbone.View
     'click .remove-meta-name': 'removeMetaName'
     'click .remove-custom-field': 'removeCustomField'
     'click .save': 'save'
+    'click .cancel': 'cancel'
   
   initialize: ->
     _.bindAll(this, 'render')
@@ -32,11 +33,21 @@ class Macchiato.Views.PostsForm extends Backbone.View
     $(item).parent().parent().remove()
     return false
   
+  cancel: ->
+    $('form#edit-post').parent().remove()
+    if Macchiato.appNavigation
+      Macchiato.appNavigation.deactivate()
+  
   save: ->
     self = @
     
+    isNew = @options.post.isNew()
+    
     title = @$('[name="title"]').val()
     text = @$('[name="text"]').val()
+    
+    published = @$('[name="published"]').is(':checked')
+    
     meta_names = []
     $('form fieldset#edit-post-meta-names div.group').each(->
       id = ""
@@ -51,9 +62,8 @@ class Macchiato.Views.PostsForm extends Backbone.View
       valueStore = $(this).find('input[name="meta_names[][value]"]')
       value = valueStore.val()
       
-      del = ""
-      deleteStore = $(this).find('input[name="meta_names[][_delete]"]')
       del = false
+      deleteStore = $(this).find('input[name="meta_names[][_delete]"]')
       if deleteStore.is(':checked')
         del = true
         
@@ -99,13 +109,27 @@ class Macchiato.Views.PostsForm extends Backbone.View
     self.options.post.save({
       title: title,
       text: text,
+      published: published,
       meta_names: meta_names,
       custom_fields: custom_fields
     }, {
       success: (model, response)->
         self.options.post = model
+        if isNew
+          Backbone.history.loadUrl('posts')
+          
+        $('.alert-window').remove()
+        alert = new Macchiato.Views.Alert({class: "success", message: "Your post was successfully saved!"})
+        Macchiato.appBody.panes[2].prepend(alert.render().el)
+        Macchiato.appBody.panes[2].scrollTop(0)
+        
         return false
       error: (model, response)->
+        $('.alert-window').remove()
+        alert = new Macchiato.Views.Alert({class: "error", message: "There was a problem saving your post." })
+        Macchiato.appBody.panes[2].prepend(alert.render().el)
+        Macchiato.appBody.panes[2].scrollTop(0)
+        
         return false
     })
     return false

@@ -1,4 +1,4 @@
-<form id="edit-post" name="post" class="nice">
+<form id="edit-post" name="post" class="nice" data-id="<%= (typeof(id) !== "undefined") ? id : "new" %>">
   <fieldset id="edit-post-content" class="expanded">
     <h5>Content</h5>
     <div>
@@ -79,7 +79,18 @@
       </p>
     </div>
   </fieldset>
+  
+  <fieldset id="edit-post-published" class="collapsed">
+    <h5>Publishing Options</h5>
+    <div>
+      <p>Please note that if you uncheck the box below, your post will not show up on your website.</p>
+      <label>
+        <input type="checkbox" name="published" value="true" <%= (published === true) ? 'checked=checked' : '' %>>
+        Publish this post?
+      </label>
+    </div>
+  </fieldset>
   <div class="actions">
-    <button class="button round save">Save</button>
+    <button class="button round save">Save</button> or <a href="#" class="cancel">cancel</a>
   </div>
 </form>

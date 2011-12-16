@@ -18,6 +18,8 @@ class Post
  
   attr_accessible :title, :text, :tags, :published, :meta_names, :meta_names_attributes, :custom_fields, :custom_fields_attributes
 
+  default_scope order_by(created_at: "DESC")
+
   def as_json(options = {})
     attrs = super(options)
     attrs["id"] = attrs["_id"]

@@ -77,10 +77,14 @@ window.Macchiato =
     # Make fieldset content expandable/collapsible
     @fieldsetExpander = new AppFactory.FieldsetExpander()
     @fieldsetExpander.make({})
+    
+    # Create new button.
+    @newButton = new AppFactory.NewButton(@appFooter.panes[1])
+    @newButton.make({})
 
-    new Macchiato.Routers.Posts
-    new Macchiato.Routers.Pages
-    new Macchiato.Routers.Users
+    @appPosts = new Macchiato.Routers.Posts
+    @appPages = new Macchiato.Routers.Pages
+    @appUsers = new Macchiato.Routers.Users
     try
       Backbone.history.start()
     catch error
