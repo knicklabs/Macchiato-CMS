@@ -14,6 +14,7 @@
     <h5>Meta Data</h5>
     <div>
       <div class="group-container">
+      <% if (meta_names !== 'undefined') { %>
       <% _.each(meta_names, function(meta_name) { %>
         <div class="group">
           <% if (meta_name.id) { %>
@@ -36,6 +37,7 @@
           </div>
         </div>
       <% }); %>
+      <% } %>
       </div>
       <p class="add-another">
         <a href="#" class="add-meta-name">Add additional meta data</a>
@@ -47,6 +49,7 @@
     <h5>Custom Fields</h5>
     <div>
       <div class="group-container">
+      <% if (custom_fields !== 'undefined') { %>
       <% _.each(custom_fields, function(custom_field) { %>
         <div class="group">
           <% if (custom_field.id) { %>
@@ -69,6 +72,7 @@
           </div>
         </div>
       <% }); %>
+      <% } %>
       </div>
       <p class="add-another">
         <a href="#" class="add-custom-field">Add another custom field</a>
