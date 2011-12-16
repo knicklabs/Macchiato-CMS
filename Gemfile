@@ -24,3 +24,4 @@ gem "rails-backbone"
 gem "bootstrap-sass"
 gem "zurb-foundation"
 gem "heroku"
+gem 'newrelic_rpm'
