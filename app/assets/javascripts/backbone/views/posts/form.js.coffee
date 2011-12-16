@@ -11,20 +11,6 @@ class Macchiato.Views.PostsForm extends Backbone.View
     @options.post.bind('change', @render)
   
   render: ->
-    if !@options.post.custom_fields or @options.post.custom_fields.length == 0
-      @options.post.custom_fields = [
-        {
-          key: "",
-          value: ""
-        }
-      ]
-    if !@options.post.meta_names or @options.post.meta_names.length == 0
-      @options.post.meta_names = [
-        {
-          key: "",
-          value: ""
-        }
-      ]
     $(@el).html(JST["backbone/templates/posts/form"](@options.post.toJSON()))
     return this
     
