@@ -1,6 +1,10 @@
 <article class="resource post" data-id="<%= id %>">
   <div class="title">
     <%= title %>
-    <a href='#' class='destroy'>Delete</a>
+    <% if (typeof(deleted_at) !== 'undefined' && deleted_at) { %>
+      <a href="#" class="restore">Restore</a>
+    <% } else { %>
+      <a href='#' class='destroy'>Delete</a>
+    <% } %>
   </div>
 </article>

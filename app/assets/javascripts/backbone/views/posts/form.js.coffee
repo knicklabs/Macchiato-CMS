@@ -106,6 +106,10 @@ class Macchiato.Views.PostsForm extends Backbone.View
       custom_fields.push(custom_field)
     )
     
+    # We need to explicitly reset the collection url in case we are using one of the modified collections.
+    if typeof(self.options.post.collection) != 'undefined'
+      self.options.post.collection.url = '/api/posts'
+    
     self.options.post.save({
       title: title,
       text: text,

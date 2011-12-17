@@ -14,7 +14,6 @@ ul#posts-list.resources {
         position: absolute;
         top: 0;
         right: 10px;
-        background: transparent url('/icons/gray_light/x_alt_24x24.png') center center no-repeat;
         text-indent: none;
         margin: 0;
         padding: 0;
@@ -22,9 +21,21 @@ ul#posts-list.resources {
         overflow: hidden;
         text-indent: -9999px;
         opacity: 0.7;
-      
-        &:hover {
+        
+        &.destroy {
           background: transparent url('/icons/gray_light/x_alt_24x24.png') center center no-repeat;
+          
+          &:hover {
+            background: transparent url('/icons/gray_light/x_alt_24x24.png') center center no-repeat; 
+          }
+        }
+        
+        &.restore {
+          background: transparent url('/icons/gray_light/undo_24x24.png') center center no-repeat;
+          
+          &:hover {
+            background: transparent url('/icons/gray_light/undo_24x24.png') center center no-repeat;
+          }
         }
       }
     }
@@ -34,11 +45,18 @@ ul#posts-list.resources {
 ul#posts-list.resources {
   li.active {
     article {
-      a {
+      a.destroy {
         background: transparent url('/icons/green/x_alt_24x24.png') center center no-repeat;
         
         &:hover {
           background: transparent url('/icons/green/x_alt_24x24.png') center center no-repeat;
+        }
+      }
+      a.restore {
+        background: transparent url('/icons/green/undo_24x24.png') center center no-repeat;
+        
+        &:hover {
+          background: transparent url('/icons/green/undo_24x24.png') center center no-repeat;
         }
       }
     }

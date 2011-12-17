@@ -34,8 +34,20 @@ class Macchiato.Views.PostsIndex extends Backbone.View
   edit: (e) ->
     target = $(e.currentTarget)
     id = target.attr('data-id')
-    view = new Macchiato.Views.PostsForm({ post: @options.posts.get(id) })
+    post = @options.posts.get(id)
+    view = new Macchiato.Views.PostsForm({ post: post })
     Macchiato.appBody.panes[2].html(view.render().el)
+    
+    if typeof(post.get('deleted_at')) != 'undefined'
+      $('form#edit-post input').attr('disabled', 'disabled')
+      $('form#edit-post textarea').attr('disabled', 'disabled')
+      $('form#edit-post button').remove()
+      $('form#edit-post a').remove()
+      $('form#edit-post .actions').remove()
+      $('.alert-window').remove()
+      alert = new Macchiato.Views.Alert({ class: 'warning', message: 'This post was deleted. You can view it but you will need to restore it in order to edit it.'})
+      Macchiato.appBody.panes[2].prepend(alert.render().el)
+      Macchiato.appBody.panes[2].scrollTop()
     
   create: ->
     # Deactivate active post in secondary navigation.

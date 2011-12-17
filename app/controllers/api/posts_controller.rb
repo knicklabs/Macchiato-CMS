@@ -145,17 +145,17 @@ class Api::PostsController < ApplicationController
     @post.destroy
     
     respond_to do |format|
-      format.json { head :ok }
+      format.json { render json: @post, status: :ok }
     end
   end
   
   # PUT /admin/posts/1/restore.json
   def restore
-    @post = Posts.find(params[:id])
+    @post = Post.deleted.find(params[:id])
     @post.restore
     
     respond_to do |format|
-      format.json { head :ok }
+      format.json { render json: @post, status: :ok }
     end
   end  
 end

@@ -2,6 +2,9 @@ class Macchiato.Routers.Posts extends Backbone.Router
   routes: {
     'posts/new/': 'create'
     'posts/new': 'create'
+    'posts/published': 'published'
+    'posts/unpublished': 'unpublished'
+    'posts/deleted': 'deleted'
     'posts/:id/edit/': 'edit'
     'posts/:id/edit': 'edit'
     'posts/': 'index'
@@ -18,6 +21,96 @@ class Macchiato.Routers.Posts extends Backbone.Router
         @view = new Macchiato.Views.PostsIndex({ posts: posts })
         Macchiato.appBody.panes[1].html(@view.render().el)
 
+        # Enable the section
+        if Macchiato.appNavigation
+          Macchiato.appNavigation.activateSection({title: "Posts"})
+
+        # Enable searching
+        if Macchiato.appSearch
+          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          
+        # Enable creation
+        if Macchiato.newButton
+          Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+          
+        # Load the first post.
+        if posts.models.length > 0
+          model = posts.models[0]
+          self.edit(model.get('id'))
+          if Macchiato.appNavigation
+            Macchiato.appNavigation.activateThis({id: model.get('id')})  
+          
+      error: (model, response) ->
+    })
+    
+  published: ->
+    self = @
+    posts = new Macchiato.Collections.PublishedPosts
+    posts.fetch({
+      success: (model, response)->
+        @view = new Macchiato.Views.PostsIndex({ posts: posts })
+        Macchiato.appBody.panes[1].html(@view.render().el)
+        
+        # Enable the section
+        if Macchiato.appNavigation
+          Macchiato.appNavigation.activateSection({title: "Posts"})
+
+        # Enable searching
+        if Macchiato.appSearch
+          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          
+        # Enable creation
+        if Macchiato.newButton
+          Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+          
+        # Load the first post.
+        if posts.models.length > 0
+          model = posts.models[0]
+          self.edit(model.get('id'))
+          if Macchiato.appNavigation
+            Macchiato.appNavigation.activateThis({id: model.get('id')})  
+          
+      error: (model, response) ->
+    })
+    
+  unpublished: ->
+    self = @
+    posts = new Macchiato.Collections.UnpublishedPosts
+    posts.fetch({
+      success: (model, response)->
+        @view = new Macchiato.Views.PostsIndex({ posts: posts })
+        Macchiato.appBody.panes[1].html(@view.render().el)
+        
+        # Enable the section
+        if Macchiato.appNavigation
+          Macchiato.appNavigation.activateSection({title: "Posts"})
+
+        # Enable searching
+        if Macchiato.appSearch
+          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          
+        # Enable creation
+        if Macchiato.newButton
+          Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+          
+        # Load the first post.
+        if posts.models.length > 0
+          model = posts.models[0]
+          self.edit(model.get('id'))
+          if Macchiato.appNavigation
+            Macchiato.appNavigation.activateThis({id: model.get('id')})  
+          
+      error: (model, response) ->
+    })
+    
+  deleted: ->
+    self = @
+    posts = new Macchiato.Collections.DeletedPosts
+    posts.fetch({
+      success: (model, response)->
+        @view = new Macchiato.Views.PostsIndex({ posts: posts })
+        Macchiato.appBody.panes[1].html(@view.render().el)
+        
         # Enable the section
         if Macchiato.appNavigation
           Macchiato.appNavigation.activateSection({title: "Posts"})
