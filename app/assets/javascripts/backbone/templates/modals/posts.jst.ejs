@@ -4,9 +4,9 @@
 	deleted posts before you can edit them.
 </p>
 <dl class="nice vertical tabs">
-	<dd><a href="#posts">All Posts <small class="right">Show published and unpublished</small></a></dd>
-	<dd><a href="#posts/published">Published <small class="right">Show only published posts</small></a></dd>
-	<dd><a href="#posts/unpublished">Unpublished <small class="right">Show only draft or unpublished posts</small></a></dd>
-	<dd><a href="#posts/deleted">Deleted <small class="right">Show all deleted posts. You can restore them!</small></a></dd>
+	<dd><a href="#posts" class="<%= (active == 'all') ? 'active' : '' %>">All Posts <small class="right">Show published and unpublished</small></a></dd>
+	<dd><a href="#posts/published" class="<%= (active == 'published') ? 'active' : '' %>">Published <small class="right">Show only published posts</small></a></dd>
+	<dd><a href="#posts/unpublished" class="<%= (active == 'unpublished') ? 'active' : '' %>">Unpublished <small class="right">Show only draft or unpublished posts</small></a></dd>
+	<dd><a href="#posts/deleted" class="<%= (active == 'deleted') ? 'active' : '' %>">Deleted <small class="right">Show all deleted posts. You can restore them!</small></a></dd>
 </dl>
 <a class="close-reveal-modal">&#215;</a>

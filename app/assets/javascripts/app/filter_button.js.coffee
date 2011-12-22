@@ -21,5 +21,11 @@ class window.AppFactory.FilterButton
       return false
     )
 
+    @filterButton.hide()
+
   alter: (options)->
-    $('#modal').html(JST[options.template])
+    $('#modal').html(JST[options.template](active: options.active))
+    @filterButton.show()
+
+  hide: (options)->
+    @filterButton.hide()

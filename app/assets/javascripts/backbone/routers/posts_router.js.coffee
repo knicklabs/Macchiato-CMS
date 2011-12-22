@@ -35,7 +35,7 @@ class Macchiato.Routers.Posts extends Backbone.Router
 
         # Enable filtering
         if Macchiato.filterButton
-          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts" })
+          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts", active: "all" })
           
         # Load the first post.
         if posts.models.length > 0
@@ -61,11 +61,15 @@ class Macchiato.Routers.Posts extends Backbone.Router
 
         # Enable searching
         if Macchiato.appSearch
-          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          Macchiato.appSearch.alter({ action: "posts/published", placeholder: "Search Posts..." })
           
         # Enable creation
         if Macchiato.newButton
           Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+
+        # Enable filtering
+        if Macchiato.filterButton
+          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts", active: "published" })
           
         # Load the first post.
         if posts.models.length > 0
@@ -91,11 +95,15 @@ class Macchiato.Routers.Posts extends Backbone.Router
 
         # Enable searching
         if Macchiato.appSearch
-          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          Macchiato.appSearch.alter({ action: "posts/unpublished", placeholder: "Search Posts..." })
           
         # Enable creation
         if Macchiato.newButton
           Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+
+        # Enable filtering
+        if Macchiato.filterButton
+          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts", active: "unpublished" })
           
         # Load the first post.
         if posts.models.length > 0
@@ -121,11 +129,15 @@ class Macchiato.Routers.Posts extends Backbone.Router
 
         # Enable searching
         if Macchiato.appSearch
-          Macchiato.appSearch.alter({ action: "posts", placeholder: "Search Posts..." })
+          Macchiato.appSearch.alter({ action: "posts/deleted", placeholder: "Search Posts..." })
           
         # Enable creation
         if Macchiato.newButton
           Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+
+        # Enable filtering
+        if Macchiato.filterButton
+          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts", active: "deleted" })
           
         # Load the first post.
         if posts.models.length > 0

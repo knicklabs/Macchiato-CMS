@@ -21,7 +21,34 @@ class window.AppFactory.Search
             Macchiato.appBody.panes[1].html(view.render().el)
           error: ->
         })
-       else if Macchiato.Collections.SearchPages and self.searchForm.attr('action') == "pages"
+      else if Macchiato.Collections.SearchPosts and self.searchForm.attr('action') == "posts/deleted"
+        posts = new Macchiato.Collections.SearchDeletedPosts
+        posts.fetch({
+          data: $.param({ q: query })
+          success: ->
+            view = new Macchiato.Views.PostsIndex({ posts: posts })
+            Macchiato.appBody.panes[1].html(view.render().el)
+          error: ->
+        })
+      else if Macchiato.Collections.SearchPosts and self.searchForm.attr('action') == "posts/published"
+        posts = new Macchiato.Collections.SearchPublishedPosts
+        posts.fetch({
+          data: $.param({ q: query })
+          success: ->
+            view = new Macchiato.Views.PostsIndex({ posts: posts })
+            Macchiato.appBody.panes[1].html(view.render().el)
+          error: ->
+        })
+      else if Macchiato.Collections.SearchPosts and self.searchForm.attr('action') == "posts/unpublished"
+        posts = new Macchiato.Collections.SearchUnpublishedPosts
+        posts.fetch({
+          data: $.param({ q: query })
+          success: ->
+            view = new Macchiato.Views.PostsIndex({ posts: posts })
+            Macchiato.appBody.panes[1].html(view.render().el)
+          error: ->
+        })
+      else if Macchiato.Collections.SearchPages and self.searchForm.attr('action') == "pages"
         pages = new Macchiato.Collections.SearchPages
         pages.fetch({
           data: $.param({ q: query }),

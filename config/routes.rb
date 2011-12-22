@@ -31,6 +31,9 @@ Macchiato::Application.routes.draw do
         get :published
         get :unpublished
         get :search
+        get :search_deleted
+        get :search_published
+        get :search_unpublished
         get :count
       end
     end

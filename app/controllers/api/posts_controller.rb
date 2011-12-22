@@ -49,7 +49,43 @@ class Api::PostsController < ApplicationController
       format.json { render json: @posts }
     end
   end
+
+  # GET /posts/search_deleted.json
+  def search_deleted
+    query = ""
+    query = params[:q] unless params[:q].blank?
+
+    @posts = Post.where({ title: /#{query}/i, deleted_at: { "$exists" => true } })
+
+    respond_to do |format|
+      format.json { render json: @posts }
+    end
+  end
+
+  # GET /posts/search_published.json
+  def search_published
+    query = ""
+    query = params[:q] unless params[:q].blank?
+    
+    @posts = Post.where({ title: /#{query}/i, published: true })
+    
+    respond_to do |format|
+      format.json { render json: @posts }
+    end 
+  end 
   
+  # GET /posts/search_unpublished.json
+  def search_unpublished 
+    query = ""
+    query = params[:q] unless params[:q].blank?
+
+    @posts = Post.where({ title: /#{query}/i, published: false })
+
+    respond_to do |format|
+      format.json { render json: @posts }
+    end 
+  end 
+    
   # GET /posts/count.json
   def count
     @count = 0
