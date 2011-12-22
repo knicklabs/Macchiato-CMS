@@ -82,6 +82,10 @@ window.Macchiato =
     @newButton = new AppFactory.NewButton(@appFooter.panes[1])
     @newButton.make({})
 
+    # Create filter button.
+    @filterButton = new AppFactory.FilterButton(@appFooter.panes[1])
+    @filterButton.make({})
+
     @appPosts = new Macchiato.Routers.Posts
     @appPages = new Macchiato.Routers.Pages
     @appUsers = new Macchiato.Routers.Users

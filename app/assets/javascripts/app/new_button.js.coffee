@@ -4,8 +4,8 @@ class window.AppFactory.NewButton
     @newButton = ""
     
   make: (options)->
-    @newButtonPane.html('<a href="#" class="button new">New</a>')
-    @newButton = @newButtonPane.find('a')
+    @newButtonPane.append('<a href="#" class="button new">New</a>')
+    @newButton = @newButtonPane.find('a.new')
     @newButton.hide()
     
   alter: (options)->

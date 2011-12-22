@@ -32,6 +32,10 @@ class Macchiato.Routers.Posts extends Backbone.Router
         # Enable creation
         if Macchiato.newButton
           Macchiato.newButton.alter({ href: "#posts/new", title: "Create New Post" })
+
+        # Enable filtering
+        if Macchiato.filterButton
+          Macchiato.filterButton.alter({ template: "backbone/templates/modals/posts" })
           
         # Load the first post.
         if posts.models.length > 0

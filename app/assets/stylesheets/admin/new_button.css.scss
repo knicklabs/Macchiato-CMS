@@ -19,4 +19,23 @@
       opacity: 1.0;
     }
   }  
+
+  .button.filter {
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin: 0;
+    margin-top: 7px;
+    margin-left: 7px;
+    float: left;
+    padding: 0;
+    background: transparent url('/icons/gray_light/fork_21x24.png') center center no-repeat;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1.0;
+    }
+  }
 }
