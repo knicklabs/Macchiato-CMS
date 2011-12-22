@@ -1,7 +1,19 @@
 @import "bootstrap/mixins";
 
+a#collapser {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: transparent url('/icons/white/list_24x21.png') center center no-repeat;
+}
+
 form#search {
   margin: 0;
+  margin-left: 32px;
   padding: 0 10px;
   padding-top: 8px;
 

@@ -1,12 +1,82 @@
 # The Panes factory splits the application into vertical panes.
 class window.AppFactory.Panes
   constructor: (@appWindow)->
-    
+    self = @
+
     # The container is a reference to the selector that contains the pane.
     @container = ""
     
     # Panes is a reference to the selector for each pane placed inside the container.
     @panes = []
+
+    # GroupsX is an array of groups and their X coordinate.
+    @groupsX = []
+
+    # GroupsW is an array of groups and their widths.
+    @groupsW = []
+
+    # Flags whether the panes need to be restored (because one is collapsed).
+    @restore = false
+
+    $('[data-collapse-group]').live('click', ->
+      if self.restore
+        # Restore all the panes.
+        self.restoreGroups({})
+      else
+        # Collapse one pane.
+        group = $(this).attr('data-collapse-group')
+        self.collapseGroup({ group: group })
+      return false
+    )
+
+  collapseGroup: (options) ->
+    self = @
+    targetGroup = options.group || null
+
+    if typeof(targetGroup) == 'undefined'
+      # Abort the operation if the target group is not found.
+      return
+
+    _.each(@panes, (pane)->
+      if $(pane).attr('data-group') == targetGroup
+        console.log(self.groupsW)
+        pos = 0 - self.groupsW[targetGroup]
+        $(pane).animate({
+          left: pos + 'px'
+        }, {
+          duration: 300,
+          specialEasing: {
+            left: 'linear'
+          }
+        })
+      else
+        $(pane).animate({
+          left: (self.groupsX[$(pane).attr('data-group')] - self.groupsW[targetGroup]) + "px" 
+        }, {
+          duration: 300,
+          specialEasing: {
+            left: 'linear'
+          }
+        })
+    )
+
+    @restore = true
+    return false
+
+  restoreGroups: (options) ->
+    self = @
+    _.each(@panes, (pane)->
+      pos = self.groupsX[pane.attr('data-group')]
+      $(pane).animate({
+        left: pos + "px"
+      }, {
+        duration: 300,
+        specialEasing: {
+          left: 'linear'
+        }
+      })
+    )
+    @restore = false
 
   split: (options)-> 
     self = @
@@ -25,6 +95,9 @@ class window.AppFactory.Panes
     @container.addClass('panes')
     
     _.each(options.panes, (p)->
+      self.groupsX[p.group] = options.leftOffset
+      self.groupsW[p.group] = p.width
+
       # Place each pane into the container.
       self.container.append('<div id="'+p.id+'"></div>')
       

@@ -6,7 +6,7 @@ class window.AppFactory.Search
   make: (options)->
     self = @
 
-    @searchPane.append('<form id="search" action="" method="POST">')
+    @searchPane.append('<a id="collapser" href="#" data-collapse-group="main">Collapse Menu</a><form id="search" action="" method="POST">')
     @searchForm = @searchPane.find("form")
 
     @searchForm.html('<input type="text" class="search" placeholder="Search..." value="" name="q">')

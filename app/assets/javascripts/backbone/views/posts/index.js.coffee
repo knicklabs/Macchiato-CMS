@@ -38,7 +38,7 @@ class Macchiato.Views.PostsIndex extends Backbone.View
     view = new Macchiato.Views.PostsForm({ post: post })
     Macchiato.appBody.panes[2].html(view.render().el)
     
-    if typeof(post.get('deleted_at')) != 'undefined'
+    if typeof(post.get('deleted_at')) != 'undefined' and post.get('deleted_at') != null
       $('form#edit-post input').attr('disabled', 'disabled')
       $('form#edit-post textarea').attr('disabled', 'disabled')
       $('form#edit-post button').remove()
