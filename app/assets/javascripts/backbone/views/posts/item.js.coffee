@@ -11,6 +11,10 @@ class Macchiato.Views.PostsItem extends Backbone.View
     if confirm("Are you sure you want to delete this post?")
       if @model.get('id') == $('form#edit-post').attr('data-id')
         $('form#edit-post').parent().remove()
+
+      # We need to explicitly reset the collection url in case we are using one of the modified collections.
+      if typeof(@model.collection) != 'undefined'
+        @model.collection.url = '/api/posts'
         
       @model.destroy({
         success: ->

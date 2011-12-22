@@ -18,7 +18,6 @@ form#search {
   padding-top: 8px;
 
   input {
-    @include box-shadow(inset 0px 1px 6px #3C4558);
     @include border-radius(30px);
     border: 1px solid darken(#3C4558, 2%);
     width: 100%;
