@@ -25,3 +25,6 @@ gem "bootstrap-sass"
 gem "zurb-foundation"
 gem "heroku"
 gem 'newrelic_rpm'
+gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
+gem "fog"
+gem "mini_magick"

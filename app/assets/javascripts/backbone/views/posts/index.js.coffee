@@ -38,6 +38,9 @@ class Macchiato.Views.PostsIndex extends Backbone.View
     view = new Macchiato.Views.PostsForm({ post: post })
     Macchiato.appBody.panes[2].html(view.render().el)
     
+    # Support file uploading for this form.
+    FileHelper.supportDragAndDrop()
+    
     if typeof(post.get('deleted_at')) != 'undefined' and post.get('deleted_at') != null
       $('form#edit-post input').attr('disabled', 'disabled')
       $('form#edit-post textarea').attr('disabled', 'disabled')
@@ -48,6 +51,8 @@ class Macchiato.Views.PostsIndex extends Backbone.View
       alert = new Macchiato.Views.Alert({ class: 'warning', message: 'This post was deleted. You can view it but you will need to restore it in order to edit it.'})
       Macchiato.appBody.panes[2].prepend(alert.render().el)
       Macchiato.appBody.panes[2].scrollTop()
+      
+    return false
     
   create: ->
     # Deactivate active post in secondary navigation.
@@ -57,4 +62,8 @@ class Macchiato.Views.PostsIndex extends Backbone.View
     post = new Macchiato.Models.Post
     view = new Macchiato.Views.PostsForm({ post: post })
     Macchiato.appBody.panes[2].html(view.render().el)
+    
+    # Support file uploading for this form.
+    FileHelper.supportDragAndDrop()
+    
     return false

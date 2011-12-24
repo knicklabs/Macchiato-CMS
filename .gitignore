@@ -17,6 +17,9 @@ db/*.sqlite3
 /log/*
 tmp/*
 
+# Files that include personal data
+/config/intializers/carrierwave.rb
+
 # various artifacts
 **.war
 *.rbc

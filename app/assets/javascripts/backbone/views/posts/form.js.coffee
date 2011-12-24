@@ -47,7 +47,7 @@ class Macchiato.Views.PostsForm extends Backbone.View
     text = @$('[name="text"]').val()
     
     published = @$('[name="published"]').is(':checked')
-    
+
     meta_names = []
     $('form fieldset#edit-post-meta-names div.group').each(->
       id = ""
@@ -109,32 +109,70 @@ class Macchiato.Views.PostsForm extends Backbone.View
     # We need to explicitly reset the collection url in case we are using one of the modified collections.
     if typeof(self.options.post.collection) != 'undefined'
       self.options.post.collection.url = '/api/posts'
-    
-    self.options.post.save({
-      title: title,
-      text: text,
-      published: published,
-      meta_names: meta_names,
-      custom_fields: custom_fields
-    }, {
-      success: (model, response)->
-        self.options.post = model
-        if isNew
-          Backbone.history.loadUrl('posts')
+
+    if window.fileToUpload
+      fileName = window.fileToUpload.name
+      fileType = window.fileToUpload.type
+      reader = new FileReader()
+      reader.onload = ((evt)->
+        window.fileToUpload = ""
+        self.options.post.save({
+          title: title,
+          text: text,
+          published: published,
+          meta_names: meta_names,
+          custom_fields: custom_fields,
+          featured_image_data: evt.target.result.replace('data:'+fileType+';base64,', '')
+          featured_image_data_file_name: fileName
+          featured_image_data_file_type: fileType
+        }, {
+          success: (model, response)->
+            self.options.post = model
+            if isNew
+              Backbone.history.loadUrl('posts')
+
+            $('.alert-window').remove()
+            alert = new Macchiato.Views.Alert({ class: "success", message: "Your post was successfully saved!"})
+            Macchiato.appBody.panes[2].prepend(alert.render().el)
+            Macchiato.appBody.panes[2].scrollTop(0)
+
+            return false
+          error: (model, response)->
+            $('.alert-window').remove()
+            alert = new Macchiato.Views.Alert({ class: "error", message: "There was a problem saving your post." })
+            Macchiato.appBody.panes[2].prepend(alert.render().el)
+            Macchiato.appBody.panes[2].scrollTop(0)
+
+            return false
+        })
+      )
+      reader.readAsDataURL(window.fileToUpload)
+    else
+      self.options.post.save({
+        title: title,
+        text: text,
+        published: published,
+        meta_names: meta_names,
+        custom_fields: custom_fields
+      }, {
+        success: (model, response)->
+          self.options.post = model
+          if isNew
+            Backbone.history.loadUrl('posts')
           
-        $('.alert-window').remove()
-        alert = new Macchiato.Views.Alert({class: "success", message: "Your post was successfully saved!"})
-        Macchiato.appBody.panes[2].prepend(alert.render().el)
-        Macchiato.appBody.panes[2].scrollTop(0)
+          $('.alert-window').remove()
+          alert = new Macchiato.Views.Alert({class: "success", message: "Your post was successfully saved!"})
+          Macchiato.appBody.panes[2].prepend(alert.render().el)
+          Macchiato.appBody.panes[2].scrollTop(0)
         
-        return false
-      error: (model, response)->
-        $('.alert-window').remove()
-        alert = new Macchiato.Views.Alert({class: "error", message: "There was a problem saving your post." })
-        Macchiato.appBody.panes[2].prepend(alert.render().el)
-        Macchiato.appBody.panes[2].scrollTop(0)
+          return false
+        error: (model, response)->
+          $('.alert-window').remove()
+          alert = new Macchiato.Views.Alert({class: "error", message: "There was a problem saving your post." })
+          Macchiato.appBody.panes[2].prepend(alert.render().el)
+          Macchiato.appBody.panes[2].scrollTop(0)
         
-        return false
-    })
+          return false
+      })
     return false
 

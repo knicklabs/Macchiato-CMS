@@ -10,7 +10,17 @@
     </div>
   </fieldset>
   
-  <fieldset id="edit-post-meta-names" class="collapsed">
+  <fieldset id="edit-post-featured-image" class="expanded">
+    <h5>Featured Image</h5>
+    <div id="drop-zone">
+      <% if (typeof('featured_image') !== 'undefined' && typeof('featured_image.url') !== 'undefined') { %>
+        <img src="<%= featured_image.url %>">
+      <% } %>  
+    </div>
+    <output id="list"></output>
+  </fieldset>
+  
+  <fieldset id="edit-post-meta-names" class="expanded">
     <h5>Meta Data</h5>
     <div>
       <div class="group-container">
@@ -45,7 +55,7 @@
     </div>
   </fieldset>
   
-  <fieldset id="edit-post-custom-fields" class="collapsed">
+  <fieldset id="edit-post-custom-fields" class="expanded">
     <h5>Custom Fields</h5>
     <div>
       <div class="group-container">
@@ -80,7 +90,7 @@
     </div>
   </fieldset>
   
-  <fieldset id="edit-post-published" class="collapsed">
+  <fieldset id="edit-post-published" class="expanded">
     <h5>Publishing Options</h5>
     <div>
       <p>Please note that if you uncheck the box below, your post will not show up on your website.</p>

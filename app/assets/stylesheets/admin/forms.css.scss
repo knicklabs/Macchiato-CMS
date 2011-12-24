@@ -95,6 +95,16 @@
         background: transparent url('/icons/green/arrow_up_alt1_24x24.png') center left no-repeat;
       }
     }
+    
+    .actions {
+      .button {
+        @include vertical-gradient(lighten(#3E475B, 10%), #3E475B);
+        
+        &:hover {
+          @include vertical-gradient(lighten(#3E475B, 15%), lighten(#3E475B, 5%));
+        }
+      }
+    }
   }
 }
 
