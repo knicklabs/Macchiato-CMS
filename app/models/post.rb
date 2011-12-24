@@ -20,7 +20,7 @@ class Post
   accepts_nested_attributes_for :meta_names, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :custom_fields, allow_destroy: true, reject_if: :all_blank
  
-  attr_accessible :title, :text, :tags, :published, :meta_names, :meta_names_attributes, :custom_fields, :custom_fields_attributes, :featured_image, :featured_image_data, :featured_image_data_file_name, :featured_image_data_file_type
+  attr_accessible :title, :text, :tags, :published, :meta_names, :meta_names_attributes, :custom_fields, :custom_fields_attributes, :featured_image, :remove_featured_image, :featured_image_data, :featured_image_data_file_name, :featured_image_data_file_type
   attr_accessor :featured_image_data, :featured_image_data_file_name, :featured_image_data_file_type
 
   default_scope order_by(created_at: "DESC")

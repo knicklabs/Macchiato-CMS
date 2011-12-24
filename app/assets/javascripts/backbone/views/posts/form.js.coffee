@@ -47,6 +47,8 @@ class Macchiato.Views.PostsForm extends Backbone.View
     text = @$('[name="text"]').val()
     
     published = @$('[name="published"]').is(':checked')
+    
+    removeFeaturedImage = @$('[name="remove_featured_image"]').is(':checked')
 
     meta_names = []
     $('form fieldset#edit-post-meta-names div.group').each(->
@@ -110,7 +112,7 @@ class Macchiato.Views.PostsForm extends Backbone.View
     if typeof(self.options.post.collection) != 'undefined'
       self.options.post.collection.url = '/api/posts'
 
-    if window.fileToUpload
+    if window.fileToUpload and !removeFeaturedImage
       fileName = window.fileToUpload.name
       fileType = window.fileToUpload.type
       reader = new FileReader()
@@ -153,7 +155,8 @@ class Macchiato.Views.PostsForm extends Backbone.View
         text: text,
         published: published,
         meta_names: meta_names,
-        custom_fields: custom_fields
+        custom_fields: custom_fields,
+        remove_featured_image: removeFeaturedImage
       }, {
         success: (model, response)->
           self.options.post = model

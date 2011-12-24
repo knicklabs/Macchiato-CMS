@@ -18,6 +18,11 @@
       <% } %>  
     </div>
     <output id="list"></output>
+    <% if (typeof('featured_image') !== 'undefined' && typeof('featured_image.url') !== 'undefined') { %>
+      <label>
+        <input type="checkbox" name="remove_featured_image"> Remove this featured image?
+      </label>
+    <% } %>
   </fieldset>
   
   <fieldset id="edit-post-meta-names" class="expanded">
