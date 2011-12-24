@@ -66,3 +66,4 @@ tmp/*
 # vim artifacts
 **.swp
 config/initializers/carrierwave.rb
+config/initializers/carrierwave.rb
